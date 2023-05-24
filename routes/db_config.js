@@ -1,29 +1,25 @@
-// routes/db_config.js
+const mysql = require('mysql2');
 
-const mysql = require('mysql');
-const dotenv = require('dotenv');
-
-dotenv.config();
-
-// Create a connection pool
+// Create a MySQL pool
 const pool = mysql.createPool({
-  connectionLimit: 10, // Maximum number of connections in the pool
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
+  host: 'localhost',      // Replace with your MySQL server host
+  user: 'root',           // Replace with your MySQL username
+  password: '12345678',   // Replace with your MySQL password
+  database: 'project2'    // Replace with your MySQL database name
 });
 
-// Verify the database connection
-pool.getConnection((err, connection) => {
-  if (err) {
-    console.error('Error connecting to the database:', err);
+// Get a connection from the pool
+pool.getConnection((error, connection) => {
+  if (error) {
+    console.error('Error getting connection from MySQL pool: ', error);
     return;
   }
+  console.log('Connected to MySQL server');
 
-  console.log('Connected to the database');
-  connection.release(); // Release the connection
+  // Release the connection back to the pool
+  connection.release();
 });
 
 // Export the pool for reuse in other files
 module.exports = pool;
+
