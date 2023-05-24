@@ -30,15 +30,14 @@
                     <h1 class="h4 text-gray-900 mb-4">Register</h1>
                   </div>
                   <form method="POST" action="/register">
-                    
                     <div class="form-group">
-                      <label for="firstName">Username</label>
-                      <input type="text" class="form-control" id="exampleInputLastName" name="firstName" placeholder="Enter First Name">
+                      <label for="username">Username</label>
+                      <input type="text" class="form-control" id="exampleInputuserame" name="username" placeholder="Enter Username Name">
                     </div>
                     <div class="form-group">
-                      <label for="lastName">Name</label>
-                      <input type="text" class="form-control" id="exampleInputEmail" name="lastName" aria-describedby="emailHelp"
-                        placeholder="Enter Last Name">
+                      <label for="Name">Name</label>
+                      <input type="text" class="form-control" id="exampleInputName" name="Name" aria-describedby="emailHelp"
+                        placeholder="Enter Name">
                     </div>
                     <div class="form-group">
                       <label for="email">Email</label>
@@ -48,7 +47,12 @@
                       <label for="password">Password</label>
                       <input type="password" class="form-control" id="exampleInputPassword" name="password" placeholder="Password">
                     </div>
-                    
+                    <div class="form-group"></div>
+                    <select class="form-control mb-3" name="user_type">
+                    <option>Sales Manager</option>
+                    <option>Cashier </option>
+                  </select>
+                  </div>
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-block">Register</button>
                     </div>
