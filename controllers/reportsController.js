@@ -1,6 +1,6 @@
 const path = require('path');
 function renderReportsPage(req, res) {
-    res.sendFile(path.join(__dirname, '../public/reports.html'));
+  res.render('reports');
   }
   
   module.exports = {
