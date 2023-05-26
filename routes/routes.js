@@ -1,5 +1,3 @@
-// routes/routes.js
-
 const express = require('express');
 const router = express.Router();
 const loginController = require('../controllers/loginController');
@@ -12,5 +10,7 @@ router.get('/register', registerController.renderRegisterPage);
 router.get('/reports', reportsController.renderReportsPage);
 router.get('/add', addController.renderaddPage);
 router.get('/forecast', ForecastingController.renderforecastingPage);
-// router.post('/register', registerController.registerUser);
+router.post('/register', registerController.registerUser);
+router.post('/', loginController.loginUser);
+
 module.exports = router;

@@ -1,16 +1,23 @@
 const mysql = require('mysql2');
 
 // Create a MySQL pool
-let connection = mysql.createConnection({
+function createConnection() {
+  const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '12345678',
-    database:'salesforecasting'
-});
+    database: 'tarzan'
+  });
 
-connection.connect(function(err) {
+  connection.connect(function(err) {
     if (err) throw err;
-    console.log("Database connected!");
-});
-// Export the pool for reuse in other files
-module.exports = connection;
+    console.log('Database connected!');
+  });
+
+  return connection;
+}
+
+// Export the createConnection function
+module.exports = {
+  createConnection
+};

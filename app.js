@@ -1,21 +1,31 @@
-// app.js 
-
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const path = require('path');
+// ...
+const cors = require('cors')
+const express =require('express');
 const app = express();
 const port = 5000;
-const ejs = require('ejs');
-const routes = require('./routes/routes');
-
-
-app.use(express.static(path.join(__dirname, 'views')));
+const ejs = require("ejs");
+const path = require("path");
+const routes = require("./routes/routes");
+const session = require('express-session');
+const flash = require('connect-flash');
+const bodyParser = require('body-parser')
+app.use(express.static(path.join(__dirname, "views")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
-app.set('view engine', 'ejs')
-app.use('/', routes);
+app.set("view engine", "ejs");
+
+// Set up session and flash middleware
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(flash());
+
+// Routes setup
+app.use("/", routes);
 
 // Error handler middleware
 const errorHandler = (err, req, res, next) => {
@@ -30,14 +40,13 @@ const errorHandler = (err, req, res, next) => {
   // Set the response JSON
   res.json({
     error: {
-      message: err.message || 'Internal Server Error',
+      message: err.message || "Internal Server Error",
     },
   });
 };
 
 // Register the error handler middleware
 app.use(errorHandler);
-
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
